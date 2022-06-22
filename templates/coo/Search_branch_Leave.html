@@ -1,0 +1,48 @@
+{% extends '/coo/layout.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12 m-auto">
+      <div class="container ">
+
+        <form action="/Search_branch_Leave_coo" method="post">
+          <label for="" class="font-weight-bold">Branch </label>
+          <select class="form-select " aria-label="Default select example" name="branch">
+            <option value="Valanchery">Valanchery</option>
+            <option value="Ramanatukara">Ramanatukara</option>
+            <option value="Perinthalmanna">Perinthalmanna</option>
+            <option value="Pattambi">Pattambi</option>
+          </select>
+          <button type="submit" class="btn  btn-primary  "> <span style="color: white;">Search </span></button>
+
+        </form>
+  <table class="table mt-5">
+    <tr class="fixed">
+      <th scope="col" >No</th>
+      <th scope="col" >Date</th>
+      <th scope="col" >Employee Name </th>
+      <th scope="col" >E-Code</th>
+      <th scope="col">Branch</th>
+      <th scope="col" >Department</th>
+      <th scope="col" >Reason</th>
+      <th scope="col" >Leave Date</th>
+      <th scope="col" >Leave Expiry Date</th>
+    </tr>
+    {% for i in val%}
+    <tr>
+      <td>{{i[13]}}</td>
+      <td>{{i[12]}}</td>
+      <td>&nbsp;{{i[1]}}</td>
+      <td>&nbsp;{{i[2]}}</td>
+      <td>&nbsp;{{i[3]}}</td>
+      <td>&nbsp;{{i[5]}}</td>
+      <td>&nbsp;{{i[7]}}</td>
+      <td>&nbsp;{{i[10]}}</td>
+      <td>&nbsp;{{i[11]}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+
+</div></div>
+{% endblock %}

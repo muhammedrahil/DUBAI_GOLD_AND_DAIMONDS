@@ -1,0 +1,31 @@
+{% extends '/admin/layout.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 m-auto">
+    <div class="container ">
+      <div class="addemp-box-container col-md-7 ">
+        <div class="col-md-8 pt-4">
+
+          <form id="form1" name="form1" method="post" action="/GettargetEmployees">
+
+            <h3 class="text-center font-weight-bold white-text " >{{val[0]}}</h3>
+
+
+            <div class="form-group">
+              <label class="font-weight-bold white-text" >Gold</label>
+              <input type="text" class="form-control" required name="Gold" placeholder="Grams">
+            </div>
+            <div class="form-group">
+              <label class="font-weight-bold white-text" >Diamond</label>
+              <input type="text" class="form-control" required name="Diamond" placeholder="Amount">
+            </div>
+            <button type="submit" class="btn float-right button-class-style" > Set</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

@@ -1,0 +1,32 @@
+{% extends '/admin/index.html' %}
+
+{% block content %}
+
+   
+
+        <div class="row" class="logo">
+            <div class="col-md-6 m-auto">
+                <div class="container ">
+                    <form id="form1" name="form1" method="post" action="/getLogin">
+
+                        <p class="error text-danger"></p>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold"  style="color: white;font-weight: bold;">UserName</label>
+                            <input type="text" class="form-control" required name="uname" placeholder="Enter Your UserName">
+                        </div>
+
+                        <p class="error text-danger"></p>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold" style="color: white;font-weight: bold;">Password</label>
+                            <input type="password" class="form-control" required name="pwd" placeholder="Enter Your Password">
+                        </div>
+                        <button type="submit" name="submit" class="btn  float-right box_shadow" >
+                            Submit</button>
+                    </form>
+                </div>
+            </div>
+
+
+    {% endblock %}

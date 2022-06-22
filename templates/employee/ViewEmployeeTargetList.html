@@ -1,0 +1,31 @@
+{% extends '/employee/layout.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-12 m-auto">
+      <div class="container ">
+
+        <ul class="list-group mt-5 ">
+
+          <li class="list-group-item"> <span class="text-center font-weight-bold" style="color: #632343;">Employee Name
+              : </span> {{val[1]}}</li>
+          <li class="list-group-item"><span class="text-center font-weight-bold" style="color: #632343;">Employee Code
+              : </span>{{val[2]}}</li>
+          <li class="list-group-item"><span class="text-center font-weight-bold" style="color: #632343;">Employee Branch
+              :</span> {{val[3]}}</li>
+              <li class="list-group-item"><span class="text-center font-weight-bold" style="color: #632343;">Employee Department
+                :</span> {{val[5]}}</li>
+          <li class="list-group-item"><span class="text-center font-weight-bold" style="color: #632343;">Gold Target
+              : </span>{{val[7]}} Grams</li>
+              <li class="list-group-item"><span class="text-center font-weight-bold" style="color: #632343;">Gold Target Achived 
+                : </span>{{val[9]}} </li>
+                <li class="list-group-item"><span class="text-center font-weight-bold" style="color: #632343;">Diamond Target  
+                  : ₹ </span>{{val[10]}}</li>       
+             <li class="list-group-item"><span class="text-center font-weight-bold" style="color: #632343;">Diamond Target Achived
+                    : ₹ </span>{{val[11]}}</li>
+        </ul>
+
+      </div>
+    </div>
+    </form>
+
+    {% endblock %}

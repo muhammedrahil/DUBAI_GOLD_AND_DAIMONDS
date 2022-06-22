@@ -1,0 +1,44 @@
+{% extends '/admin/layout.html' %}
+
+{% block content %}
+<div class="row logo" id="section">
+  <div class="col-md-12 col-lg-12 col-sm-12 m-auto">
+    <div class="container ">
+      <div class="addemp-box-container col-md-7 ">
+        <div class="col-md-8 pt-4">
+
+          <form id="form1" name="form1" method="post" action="/GetaddEmployee">
+            <div class="form-group">
+              <label for="" class="font-weight-bold  white-text" >Employee Name</label>
+              <input type="text" class="form-control" name="ename" required placeholder="Enter Employee Name" ></input><br>
+    
+            <div class="form-group">
+              <label for="" class="font-weight-bold  white-text" >E-Code</label>
+              <input type="text" class="form-control" name="ecode" required id="" placeholder="Enter  Employee Code">
+            </div>
+    
+            <label for="" class="font-weight-bold  white-text" >Department</label><br>
+            <select class="form-select" aria-label="Default select example" name="Department">
+    
+              <option value="ACC">&nbsp;Accounts</option>
+              <option value="PUR">&nbsp;Purchase</option>
+              <option value="CSH">&nbsp;Cashier</option>
+              <option value="SAL">&nbsp;Salesman</option>
+              <option value="MKT">&nbsp;Marketing</option>
+              <option value="DSNR">&nbsp;Disigner</option>
+              <option value="REC">&nbsp;Reception</option>
+              <option value="OBY">&nbsp;Office Boy</option>
+              <option value="SMT">&nbsp;Smith</option>
+              <option value="CLN">&nbsp;Cleaning</option>
+            </select>
+    
+            <button type="submit" class="btn  float-right button-class-style" > <span
+               >ADD</span></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+
+  {% endblock %}

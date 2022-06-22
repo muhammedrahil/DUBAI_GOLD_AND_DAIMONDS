@@ -1,0 +1,55 @@
+{% extends '/employee/layout.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12 m-auto">
+    <div class="container ">  
+
+      <table class="table mt-5 pt-5">
+          <tr class="fixed">
+          <th scope="col" ></th>
+          <th scope="col">No</th>
+          <th scope="col">Date</th>
+          <th scope="col">Employee Name </th>
+          <th scope="col">E-Code</th>
+          <th scope="col">Branch</th>
+          <th scope="col">Department</th>
+          <th scope="col" >Catogary</th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        {% for i in val%}
+
+
+        <tr>
+          <td>&nbsp; {% if i[10] == 'Accepted' %}
+            <span>&#10003;</span>
+            {% endif %}
+          </td>
+          <td>{{i[12]}}</td>
+          <td>&nbsp;{{i[11]}}</td>
+          <td>&nbsp;{{i[1]}}</td>
+          <td>&nbsp;{{i[2]}}</td>
+          <td>&nbsp;{{i[3]}}</td>
+          <td>&nbsp;{{i[5]}}</td>
+          <td>&nbsp;{{i[7]}}</td>
+          <!-- <td>&nbsp;₹ {{i[7]}}</td> -->
+          <td>
+            <a href="/StatusviewlistPymentListseployee?id={{i[6]}}" class="btn  " style="background-color:#632343;">
+              <span style="color: white;">Status</span></a>
+          </td>
+          {% if i[10] != 'Accepted' %}
+          <td>
+            <a href="/RemovePaymentstatuslist?id={{i[6]}}" class="btn btn-primary " > <span
+                style="color: white;">Remove</span></a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends '/employee/layout.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-6 m-auto">
+      <div class="container ">
+
+        <script type="text/javascript">
+          function CheckPayment(val) {
+            var element = document.getElementById('payment');
+            if (val == 'others')
+              element.style.display = 'block';
+            else
+              element.style.display = 'none';
+          }
+        </script>
+
+  <form id="form1" name="form1" method="post" action="/GetPymentPage">
+
+          <label for="" class="font-weight-bold col-md-12 mt-5" style="color: #632343;">Select Option</label>
+          
+          <select name="PymentOption" class="form-select col-md-12 mt-1" onchange='CheckPayment(this.value);'>
+            <option value="TA/FA" style="color: #632343;">TA/FA</option>
+            <option value="Salary" style="color: #632343;">Salary</option>
+            <option value="Salary Advance" style="color: #632343;">Salary Advance</option>
+            <option value="others" style="color: #632343;">Others</option>
+          </select>
+          <br><br>
+          <input type="text" class="form-control" name="discription" placeholder="Enter Your Payment Reason" id="payment"
+            style="display:none;"></input>
+
+          <input type="number" class="form-control mt-2" required name="pyment" placeholder="Enter Your Amount">
+
+          <br><button type="submit" onclick="" name="submit" class="btn  float-right"
+            style="background-color:#632343;"> <span style="color: white;">Submit</span></button>
+  </form>
+  </div>
+  </div>
+  </div>
+  </form>
+
+  {% endblock %}
