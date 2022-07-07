@@ -60,6 +60,19 @@ def getLogin():
             session['branch'] = 'Valanchery'
 
         return '''<script>alert("Manager Login Successfull");window.location="/admins"</script>'''
+    elif result[3] == 'ACCOUNTS':
+        session['lid'] = 'accounts'
+
+        if result[1] == 'PMNACC':
+            session['branch'] = 'Perinthalmanna'
+        elif result[1] == 'RMKACC':
+            session['branch'] = 'Ramanatukara'
+        elif result[1] == 'PTBACC':
+            session['branch'] = 'Pattambi'
+        elif result[1] == 'VLCACC':
+            session['branch'] = 'Valanchery'
+
+        return '''<script>alert("Accounts Login Successfull");window.location="/admins"</script>'''
     elif result[3] == "EMPLOYEES":
         session['lid'] = 'employees'
 
@@ -87,6 +100,9 @@ def logout():
     return redirect('/')
 
 
+
+
+
 # director and Manager modules codes ................#######################################...........................
 
 
@@ -95,7 +111,7 @@ def logout():
 @app.route("/admins")
 @login_required
 def admins():
-    if(session['lid'] == 'manager' or session['lid'] == 'director'):
+    if(session['lid'] == 'manager' or session['lid'] == 'director' or session['lid'] == 'accounts'):
         return render_template("admin/home.html")
     else:
         return '''<script>alert("Unavailable");window.history.back()</script>'''
@@ -322,7 +338,7 @@ def datefilter():
 @ app.route("/SetEmployeestarget")
 @login_required
 def SetEmployeestarget():
-    if(session['lid'] == 'manager' or session['lid'] == 'director'):
+    if(session['lid'] == 'manager' or session['lid'] == 'director' or session['lid'] == 'accounts' ):
         qry = "SELECT `login`.*,`employee`.* FROM `login`JOIN`employee`ON`login`.`loginid`=`employee`.`loginid` WHERE `employee`.`branch`=%s ORDER BY `employee`.`emp_id` DESC"
         res = selectall(qry, session['branch'])
         no=1
@@ -334,13 +350,14 @@ def SetEmployeestarget():
     else:
         return '''<script>alert("Unavailable");window.history.back()</script>'''
 
+
 # search targrt branch ways................................................
 
 
 @ app.route("/Search_branch_SetTarget", methods=['post'])
 @login_required
 def Search_branch_SetTarget():
-    if(session['lid'] == 'manager' or session['lid'] == 'director'):
+    if(session['lid'] == 'manager' or session['lid'] == 'director' or session['lid'] == 'accounts'):
         department = request.form['department']
         qry = "SELECT `login`.*,`employee`.* FROM `login`JOIN`employee`ON`login`.`loginid`=`employee`.`loginid` WHERE `employee`.`department`=%s AND `employee`.`branch`=%s ORDER BY `employee`.`emp_id` DESC"
         val = (department, session['branch'])
@@ -355,12 +372,14 @@ def Search_branch_SetTarget():
         return '''<script>alert("Unavailable");window.history.back()</script>'''
 
 
+
+
 # set taget button goto page...........................................
 
 @ app.route("/SettargetEmployees")
 @login_required
 def SettargetEmployees():
-    if(session['lid'] == 'manager' or session['lid'] == 'director'):
+    if(session['lid'] == 'manager' or session['lid'] == 'director' or session['lid'] == 'accounts'):
         id = request.args.get('id')
         session['id'] = id
         qry = "SELECT `employee`.*,`target`.* FROM `target` JOIN `employee` ON `employee`.`loginid`=`target`.`lg_id` WHERE `employee`.`loginid`=%s"
@@ -374,6 +393,8 @@ def SettargetEmployees():
             return '''<script>alert("already set, Please update employee target");window.location="/viewupdatetargetEmployees"</script>'''
     else:
         return '''<script>alert("Unavailable");window.history.back()</script>'''
+
+
 
 # set target.....................................................
 
@@ -399,7 +420,7 @@ def GettargetEmployees():
 @ app.route("/viewupdatetargetEmployees")
 @login_required
 def viewupdatetargetEmployees():
-    if(session['lid'] == 'manager' or session['lid'] == 'director'):
+    if(session['lid'] == 'manager' or session['lid'] == 'director'or session['lid'] == 'accounts'):
         qry = "SELECT `employee`.*,`target`.* FROM `target` JOIN `employee` ON employee.`loginid`=`target`.`lg_id` WHERE `employee`.`branch`=%s ORDER BY `target`.`trid` DESC"
         res = selectall(qry, session['branch'])
         no=1
@@ -417,7 +438,7 @@ def viewupdatetargetEmployees():
 @ app.route("/Search_viewupdatetargetEmployees", methods=['post'])
 @login_required
 def Search_viewupdatetargetEmployees():
-    if(session['lid'] == 'manager' or session['lid'] == 'director'):
+    if(session['lid'] == 'manager' or session['lid'] == 'director'or session['lid'] == 'accounts'):
         department = request.form['department']
         qry = "SELECT `employee`.*,`target`.* FROM `target` JOIN `employee` ON employee.`loginid`=`target`.`lg_id`  WHERE `employee`.`department`=%s AND employee.branch=%s ORDER BY `employee`.`emp_id` DESC"
         val = (department, session['branch'])
@@ -435,7 +456,7 @@ def Search_viewupdatetargetEmployees():
 @ app.route("/updateEmployeestarget")
 @login_required
 def updateEmployeestarget():
-    if(session['lid'] == 'manager' or session['lid'] == 'director'):
+    if(session['lid'] == 'manager' or session['lid'] == 'director'or session['lid'] == 'accounts'):
         id = request.args.get('id')
         session['tid'] = id
         qry = "SELECT `employee`.*,`target`.* FROM `target` JOIN `employee` ON employee.`loginid`=`target`.`lg_id` where `target`. `trid`=%s "
@@ -459,7 +480,7 @@ def GetupdatetargetEmployees():
 @ app.route("/AchiveEmployeestarget")
 @login_required
 def AchiveEmployeestarget():
-    if(session['lid'] == 'manager' or session['lid'] == 'director'):
+    if(session['lid'] == 'manager' or session['lid'] == 'director'or session['lid'] == 'accounts'):
         id = request.args.get('id')
         session['tid'] = id
         qry = "SELECT `employee`.*,`target`.* FROM `target` JOIN `employee` ON employee.`loginid`=`target`.`lg_id` where `target`. `trid`=%s "
@@ -808,10 +829,8 @@ def viewupdatetargetEmployees_coo():
                     dict_target["gold_achived"] += float(list_employee[i][j])
                 elif(j == 11):
                     dict_target["diamond_achived"] += int(list_employee[i][j])
-
             dict_target["gold_percentage"] = "{0:.2f}".format((dict_target['gold_achived']/dict_target['gold_target']) * 100)
             dict_target["diamond_percentage"] = "{0:.2f}".format( (dict_target['diamond_achived']/dict_target['diamond_target']) * 100)
-
         return render_template("coo/ViewtargetEmp.html", val=arr, dict=dict_target)
     else:
         return '''<script>alert("Unavailable");window.history.back()</script>'''
@@ -835,7 +854,6 @@ def Search_viewupdatetargetEmployees_coo():
                        "diamond_achived": 0, "gold_percentage": 0, "diamond_percentage": 0}
         for i in range(len(list_employee)):
             for j in range(len(list_employee[i])):
-                print(i, j)
                 if(j == 7):
                     dict_target["gold_target"] += float(list_employee[i][j])
                 elif(j == 10):
@@ -844,14 +862,11 @@ def Search_viewupdatetargetEmployees_coo():
                     dict_target["gold_achived"] += float(list_employee[i][j])
                 elif(j == 11):
                     dict_target["diamond_achived"] += int(list_employee[i][j])
-            try:
-                dict_target["gold_percentage"] = "{0:.2f}".format(
-                    (dict_target['gold_achived']/dict_target['gold_target']) * 100)
-                dict_target["diamond_percentage"] = "{0:.2f}".format(
-                    (dict_target['diamond_achived']/dict_target['diamond_target']) * 100)
-            except ZeroDivisionError:
-                '''<script>alert("No value");window.history.back()</script>'''
 
+            dict_target["gold_percentage"] = "{0:.2f}".format(
+                (dict_target['gold_achived']/dict_target['gold_target']) * 100)
+            dict_target["diamond_percentage"] = "{0:.2f}".format(
+                (dict_target['diamond_achived']/dict_target['diamond_target']) * 100)
         return render_template("coo/Search_viewupdatetargetEmployees.html", val=arr, dict=dict_target)
     else:
         return '''<script>alert("Unavailable");window.history.back()</script>'''
